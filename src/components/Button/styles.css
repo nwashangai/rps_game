@@ -1,0 +1,14 @@
+.button {
+  color: var(--rps-primary-color);
+  font-size: 20px;
+  border: 1px solid var(--rps-primary-color);
+  padding: 15px 38px;
+  border-radius: 28px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button:disabled {
+  color: var(--rps-primary-color-disabled);
+  border-color: var(--rps-primary-color-disabled);
+}

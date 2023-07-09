@@ -1,0 +1,12 @@
+.statistic {
+  display: flex;
+}
+
+.statistic-property {
+  color: var(--rps-primary-color);
+  font-weight: bold;
+}
+
+.statistic-value {
+  color: var(--rps-white-color);
+}

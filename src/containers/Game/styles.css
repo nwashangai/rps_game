@@ -1,0 +1,35 @@
+.game {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.game-options-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.game-options-title {
+  text-align: center;
+}
+
+.game-options {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 15px;
+}
+
+.game-button-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}

@@ -1,0 +1,16 @@
+.match {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-weight: bold;
+}
+
+.match-choice {
+  color: var(--rps-white-color);
+  font-size: 38px;
+}
+
+.match-vs {
+  font-size: 30px;
+  align-self: flex-end;
+}

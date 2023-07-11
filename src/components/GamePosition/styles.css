@@ -70,10 +70,6 @@
   border: 0.125rem solid var(--rps-red-color);
 }
 
-.game-position-bet.hidden {
-  visibility: hidden;
-}
-
 .game-position.disabled {
   pointer-events: none;
   cursor: not-allowed !important;

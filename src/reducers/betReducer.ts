@@ -8,15 +8,25 @@ export const betReducer: Reducer<BetStateType, BetActionType> = (
 ) => {
   switch (action.type) {
     case BetAction.UpdateBalance:
-      return { ...state, balance: state.balance + action.payload.value };
+      return {
+        ...state,
+        balance: state.balance + action.payload.value,
+      };
     case BetAction.PlaceBet:
-      const currentBetMap = state.bet;
       const { position, newBetForPosition, totalCurrentBet } = action.payload;
-      currentBetMap.set(position, newBetForPosition);
+      const bet = new Map<GamePosition, number>(state.bet);
+      bet.set(position, newBetForPosition);
 
-      return { ...state, bet: currentBetMap, totalCurrentBet };
+      return {
+        ...state,
+        bet,
+        totalCurrentBet,
+      };
     case BetAction.UpdateWin:
-      return { ...state, win: state.win + action.payload.value };
+      return {
+        ...state,
+        win: state.win + action.payload.value,
+      };
     case BetAction.ClearBet:
       return {
         ...state,
@@ -25,15 +35,18 @@ export const betReducer: Reducer<BetStateType, BetActionType> = (
         totalCurrentBet: 0,
       };
     case BetAction.SetWinnerInfo:
-      return { ...state, winnerInfo: action.payload };
+      return {
+        ...state,
+        winnerInfo: action.payload,
+      };
     case BetAction.BatchAction: {
-      // to avoid unnecessary rerenders running multiple dispatch,
-      // I created a batch action dispatcher for it
       const { actions } = action.payload;
       let newState = state;
+
       actions.forEach((singleAction) => {
         newState = betReducer(newState, singleAction);
       });
+
       return newState;
     }
     default:

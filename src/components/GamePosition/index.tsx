@@ -3,26 +3,41 @@ import { IGamePosition } from './types';
 
 import './styles.css';
 
-function GameOption({
+function GamePosition({
   text,
   bet,
   isActive,
   onClick,
   isDisabled,
 }: IGamePosition) {
-  return (
-    <div
-      className={`game-position game-position-${text.toLowerCase()}${
-        isActive ? ' active' : ''
-      }${isDisabled ? ' disabled' : ''}`}
-      onClick={() => (onClick ? onClick(text) : null)}
-    >
-      <div className={`game-position-bet ${!bet && 'hidden'}`}>
+  const positionClassName = `game-position game-position-${text.toLowerCase()}${
+    isActive ? ' active' : ''
+  }${isDisabled ? ' disabled' : ''}`;
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(text);
+    }
+  };
+
+  const renderBet = () => {
+    if (!bet) {
+      return null;
+    }
+
+    return (
+      <div className="game-position-bet">
         <span>{bet}</span>
       </div>
+    );
+  };
+
+  return (
+    <div className={positionClassName} onClick={handleClick}>
+      {renderBet()}
       <span>{text}</span>
     </div>
   );
 }
 
-export default GameOption;
+export default GamePosition;

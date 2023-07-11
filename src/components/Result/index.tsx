@@ -1,26 +1,43 @@
 import React from 'react';
-
-import './styles.css';
 import { IResult } from './types';
 
-function Result({ winnerPositon, reward }: IResult) {
+import './styles.css';
+
+function Result({ winnerPosition, reward }: IResult) {
+  const renderWinnerPosition = () => {
+    const positionClass = winnerPosition
+      ? `result-position-${winnerPosition.toLowerCase()}`
+      : 'result-position-tie';
+
+    return (
+      <span className={`result-winner-position ${positionClass}`}>
+        {winnerPosition ? `${winnerPosition} WON` : 'A TIE'}
+      </span>
+    );
+  };
+
+  const renderStatusWrapper = () => {
+    if (winnerPosition && reward) {
+      return (
+        <div className="result-status-wrapper">
+          <span>YOU WIN</span>
+          <span className="result-reward">{reward.toFixed(2)}</span>
+        </div>
+      );
+    } else if (winnerPosition) {
+      return (
+        <div className="result-status-wrapper">
+          <span>YOU LOST</span>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="result">
-      <span
-        className={`result-winner-position result-position-${
-          winnerPositon?.toLowerCase() || 'tie'
-        }`}
-      >
-        {winnerPositon ? `${winnerPositon} WON` : 'A TIE'}
-      </span>
-      {winnerPositon && (
-        <div className="result-status-wrapper">
-          <span>YOU {reward ? 'WIN' : 'LOST'}</span>{' '}
-          {!!reward && (
-            <span className="result-reward">{reward.toFixed(2)}</span>
-          )}
-        </div>
-      )}
+      {renderWinnerPosition()}
+      {renderStatusWrapper()}
     </div>
   );
 }

@@ -39,28 +39,26 @@ const BettingProvider: React.FC<IBettingProvider> = ({
   }, []);
 
   const placeBetOn = (position: GamePosition): void => {
-    const haveEnoughBalance = bettingState.balance >= settings.betRate;
-    const currentBetOnPosition = bettingState.bet.get(position) || 0;
+    const { balance, bet, totalCurrentBet } = bettingState;
+    const { betRate } = settings;
+    const haveEnoughBalance = balance >= betRate;
+    const currentBetOnPosition = bet.get(position) || 0;
 
-    if (
-      haveEnoughBalance &&
-      (currentBetOnPosition || bettingState.bet.size < 2)
-    ) {
+    if (haveEnoughBalance && (currentBetOnPosition || bet.size < 2)) {
       dispatch({
         type: BetAction.BatchAction,
         payload: {
           actions: [
             {
               type: BetAction.UpdateBalance,
-              payload: { value: -settings.betRate },
+              payload: { value: -betRate },
             },
             {
               type: BetAction.PlaceBet,
               payload: {
                 position,
-                newBetForPosition: currentBetOnPosition + settings.betRate,
-                totalCurrentBet:
-                  bettingState.totalCurrentBet + settings.betRate,
+                newBetForPosition: currentBetOnPosition + betRate,
+                totalCurrentBet: totalCurrentBet + betRate,
               },
             },
           ],
@@ -74,12 +72,17 @@ const BettingProvider: React.FC<IBettingProvider> = ({
     playerPosition,
     aiPosition,
   }) => {
-    const size = bettingState.bet.size;
-    const bet = bettingState.bet.get(playerPosition) || 0;
+    const { bet } = bettingState;
+    const size = bet.size;
+    const reward =
+      result === GameResult.Win
+        ? getReward(
+            bet.get(playerPosition) || 0,
+            settings.winningRates[size - 1]
+          )
+        : 0;
 
     if (result === GameResult.Win) {
-      const reward = getReward(bet, settings.winningRates[size - 1]);
-
       dispatch({
         type: 'BATCH_ACTIONS',
         payload: {
@@ -106,7 +109,7 @@ const BettingProvider: React.FC<IBettingProvider> = ({
           actions: [
             {
               type: BetAction.UpdateBalance,
-              payload: { value: bet },
+              payload: { value: bet.get(playerPosition) || 0 },
             },
             {
               type: BetAction.SetWinnerInfo,

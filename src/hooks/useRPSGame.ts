@@ -19,49 +19,48 @@ export const useRPSGame = (
 ) => {
   const [rpsState, dispatch] = useReducer(gameReducer, initialGameState);
 
-  const playGame = (): void => {
+  const playGame = async (): Promise<void> => {
     dispatch({
       type: GameAction.SetGameStatus,
       payload: { status: GameStatus.Started },
     });
 
-    runRPSMatch().then((aiPosition) => {
-      const size = playerSelectedPositions.size;
-      let losePosition: GamePosition;
+    const aiPosition = await runRPSMatch();
+    const size = playerSelectedPositions.size;
+    let losePosition: GamePosition | undefined;
 
-      for (const [position] of playerSelectedPositions) {
-        const result = checkBetResult(position, aiPosition);
-        const isWinner = result === GameResult.Win;
-        const isTie = result === GameResult.Tie && size === 1;
+    for (const [position] of playerSelectedPositions) {
+      const result = checkBetResult(position, aiPosition);
+      const isWinner = result === GameResult.Win;
+      const isTie = result === GameResult.Tie && size === 1;
 
-        if (isWinner || isTie) {
-          dispatch({
-            type: GameAction.SetGameStat,
-            payload: {
-              gameStats: {
-                result,
-                aiPosition,
-                playerPosition: position,
-              },
+      if (isWinner || isTie) {
+        dispatch({
+          type: GameAction.SetGameStat,
+          payload: {
+            gameStats: {
+              result,
+              aiPosition,
+              playerPosition: position,
             },
-          });
-
-          return;
-        } else if (result === GameResult.Lose) {
-          losePosition = position;
-        }
-      }
-
-      dispatch({
-        type: GameAction.SetGameStat,
-        payload: {
-          gameStats: {
-            result: GameResult.Lose,
-            aiPosition,
-            playerPosition: losePosition!,
           },
+        });
+
+        return;
+      } else if (result === GameResult.Lose) {
+        losePosition = position;
+      }
+    }
+
+    dispatch({
+      type: GameAction.SetGameStat,
+      payload: {
+        gameStats: {
+          result: GameResult.Lose,
+          aiPosition,
+          playerPosition: losePosition!,
         },
-      });
+      },
     });
   };
 

@@ -5,28 +5,32 @@
   line-height: 1.4;
 }
 
-.result-winner-choice {
-  font-size: 38px;
+.result-winner-position {
+  font-size: 2.375rem;
   font-weight: bold;
 }
 
-.result-choice-paper {
+.result-position-paper {
   color: var(--rps-green-color);
 }
 
-.result-choice-rock {
+.result-position-rock {
   color: var(--rps-blue-color);
 }
 
-.result-choice-scissors {
+.result-position-scissors {
   color: var(--rps-red-color);
+}
+
+.result-position-tie {
+  color: var(--rps-white-color);
 }
 
 .result-status-wrapper {
   display: flex;
   justify-content: center;
-  gap: 5px;
-  font-size: 22px;
+  gap: 0.313rem;
+  font-size: 1.375rem;
 }
 
 .result-reward {

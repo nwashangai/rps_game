@@ -24,3 +24,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.disabled:hover, button:disabled {
+  cursor: not-allowed;
+}
+
+.loader {
+  border: 1rem solid var(--rps-gray-color-1);
+  border-top: 1rem solid var(--rps-primary-color);
+  border-radius: 50%;
+  width: 4.2rem;
+  height: 4.2rem;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

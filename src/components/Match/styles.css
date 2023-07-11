@@ -1,16 +1,16 @@
 .match {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 1.875rem;
   font-weight: bold;
 }
 
 .match-choice {
   color: var(--rps-white-color);
-  font-size: 38px;
+  font-size: 2.375rem;
 }
 
 .match-vs {
-  font-size: 30px;
+  font-size: 1.875rem;
   align-self: flex-end;
 }

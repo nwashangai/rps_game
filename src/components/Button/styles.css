@@ -1,9 +1,10 @@
 .button {
   color: var(--rps-primary-color);
-  font-size: 20px;
-  border: 1px solid var(--rps-primary-color);
-  padding: 15px 38px;
-  border-radius: 28px;
+  font-size: 1.25rem;
+  border: 0.063rem solid var(--rps-primary-color);
+  background-color: var(--rps-secondary-color);
+  padding: 0.938rem 2.375rem;
+  border-radius: 1.75rem;
   cursor: pointer;
   font-weight: bold;
 }

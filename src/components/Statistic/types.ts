@@ -1,4 +1,4 @@
 export interface IStatistic {
-  property: string;
+  property: 'BALANCE' | 'WIN' | 'BET';
   value: number;
 }

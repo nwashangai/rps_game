@@ -1,6 +1,6 @@
-import { GameOptions } from '../../types';
+import { GamePosition } from '../../types';
 
 export interface IMatch {
-  player1Choice: GameOptions;
-  player2Choice: GameOptions;
+  player1Choice: GamePosition;
+  player2Choice: GamePosition;
 }

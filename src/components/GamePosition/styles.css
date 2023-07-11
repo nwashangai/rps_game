@@ -1,0 +1,80 @@
+.game-position {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.625rem;
+  height: 6.25rem;
+  width: 7.5rem;
+  border-radius: 0.313rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.game-position-bet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--rps-white-color);
+  width: 2.188rem;
+  height: 2.188rem;
+  border-radius: 50%;
+  margin: 0 auto;
+  border: 0.188rem solid var(--rps-light-blue-color);
+}
+
+.game-position-bet > span {
+  font-size: 0.6rem;
+  color: var(--rps-secondary-color);
+}
+
+.game-position > span {
+  text-align: center;
+}
+
+.game-position-rock {
+  border: 0.063rem solid var(--rps-blue-shade-1);
+  background-color: var(--rps-blue-shade-2);
+}
+
+.game-position-rock > span {
+  color: var(--rps-blue-color);
+}
+
+.game-position-paper {
+  border: 0.063rem solid var(--rps-green-shade-1);
+  background-color: var(--rps-green-shade-2);
+}
+
+.game-position-paper > span {
+  color: var(--rps-green-color);
+}
+
+.game-position-scissors {
+  border: 0.063rem solid var(--rps-red-shade-1);
+  background-color: var(--rps-red-shade-2);
+}
+
+.game-position-scissors > span {
+  color: var(--rps-red-color);
+}
+
+.game-position-rock.active {
+  border: 0.125rem solid var(--rps-blue-color);
+}
+
+.game-position-paper.active {
+  border: 0.125rem solid var(--rps-green-color);
+}
+
+.game-position-scissors.active {
+  border: 0.125rem solid var(--rps-red-color);
+}
+
+.game-position-bet.hidden {
+  visibility: hidden;
+}
+
+.game-position.disabled {
+  pointer-events: none;
+  cursor: not-allowed !important;
+}

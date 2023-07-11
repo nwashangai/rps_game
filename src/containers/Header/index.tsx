@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Statistic from '../../components/Statistic';
+import { BettingContext } from '../../providers/BettingProvider';
 
 import './styles.css';
 
 function Header() {
-  const data = [
-    { property: 'BALANCE', value: 5000 },
-    { property: 'BET', value: 0 },
-    { property: 'WIN', value: 0 },
-  ];
+  const betting = useContext(BettingContext);
+
   return (
     <header className="header">
-      {data.map((statistic, index) => (
-        <Statistic
-          key={`statistic-${index}`}
-          property={statistic.property}
-          value={statistic.value}
-        />
-      ))}
+      <Statistic
+        property="BALANCE"
+        value={betting?.bettingState.balance || 0}
+      />
+      <Statistic
+        property="BET"
+        value={betting?.bettingState.totalCurrentBet || 0}
+      />
+      <Statistic property="WIN" value={betting?.bettingState.win || 0} />
     </header>
   );
 }

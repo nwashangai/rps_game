@@ -1,6 +1,6 @@
-import { GameOptions } from '../../types';
+import { GamePosition } from '../../types';
 
 export interface IResult {
-  winnerChoice: GameOptions;
-  reward: number | null;
+  winnerPositon?: GamePosition | null;
+  reward?: number;
 }

@@ -13,7 +13,7 @@ import './styles.css';
 function Game() {
   const betting = useContext(BettingContext);
   const { status, gameStats, playGame, endGame, resetGame } = useRPSGame(
-    betting?.bettingState.bet || new Map()
+    Array.from((betting?.bettingState.bet || new Map()).keys())
   );
   const balance = betting?.bettingState.balance || 0;
   const isMaxPositionsSelected = (betting?.bettingState.bet.size || 0) > 1;

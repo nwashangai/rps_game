@@ -14,9 +14,7 @@ const initialGameState: GameStateType = {
   gameStats: null,
 };
 
-export const useRPSGame = (
-  playerSelectedPositions: Map<GamePosition, number>
-) => {
+export const useRPSGame = (playerSelectedPositions: GamePosition[]) => {
   const [rpsState, dispatch] = useReducer(gameReducer, initialGameState);
 
   const playGame = async (): Promise<void> => {
@@ -26,10 +24,10 @@ export const useRPSGame = (
     });
 
     const aiPosition = await runRPSMatch();
-    const size = playerSelectedPositions.size;
+    const size = playerSelectedPositions.length;
     let losePosition: GamePosition | undefined;
 
-    for (const [position] of playerSelectedPositions) {
+    for (const position of playerSelectedPositions) {
       const result = checkBetResult(position, aiPosition);
       const isWinner = result === GameResult.Win;
       const isTie = result === GameResult.Tie && size === 1;

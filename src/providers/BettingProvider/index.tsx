@@ -84,7 +84,7 @@ const BettingProvider: React.FC<IBettingProvider> = ({
 
     if (result === GameResult.Win) {
       dispatch({
-        type: 'BATCH_ACTIONS',
+        type: BetAction.BatchAction,
         payload: {
           actions: [
             {
@@ -104,7 +104,7 @@ const BettingProvider: React.FC<IBettingProvider> = ({
       });
     } else if (result === GameResult.Tie) {
       dispatch({
-        type: 'BATCH_ACTIONS',
+        type: BetAction.BatchAction,
         payload: {
           actions: [
             {

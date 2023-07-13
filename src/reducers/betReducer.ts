@@ -13,14 +13,13 @@ export const betReducer: Reducer<BetStateType, BetActionType> = (
         balance: state.balance + action.payload.value,
       };
     case BetAction.PlaceBet:
-      const { position, newBetForPosition, totalCurrentBet } = action.payload;
+      const { position, newBetForPosition } = action.payload;
       const bet = new Map<GamePosition, number>(state.bet);
       bet.set(position, newBetForPosition);
 
       return {
         ...state,
         bet,
-        totalCurrentBet,
       };
     case BetAction.UpdateWin:
       return {
@@ -32,7 +31,6 @@ export const betReducer: Reducer<BetStateType, BetActionType> = (
         ...state,
         bet: new Map<GamePosition, number>(),
         winnerInfo: undefined,
-        totalCurrentBet: 0,
       };
     case BetAction.SetWinnerInfo:
       return {

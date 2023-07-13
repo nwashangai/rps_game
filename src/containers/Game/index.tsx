@@ -25,7 +25,7 @@ function Game() {
     if (gameStats) {
       setTimeout(() => {
         if (betting?.updateBetStats && gameStats) {
-          betting?.updateBetStats({ ...gameStats });
+          betting.updateBetStats(gameStats);
           endGame();
         }
       }, 3000);

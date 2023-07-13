@@ -27,7 +27,6 @@ export type WinnerInfoType = { position: GamePosition | null; reward: number };
 export type BetStateType = {
   balance: number;
   bet: Map<GamePosition, number>;
-  totalCurrentBet: number;
   win: number;
   winnerInfo?: WinnerInfoType;
 };
@@ -41,7 +40,6 @@ interface IPlaceBet {
   type: BetAction.PlaceBet;
   payload: {
     newBetForPosition: number;
-    totalCurrentBet: number;
     position: GamePosition;
   };
 }

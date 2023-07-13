@@ -13,7 +13,6 @@ import { getReward } from '../../helpers/getReward';
 const initialBetState: BetStateType = {
   balance: 0,
   bet: new Map(),
-  totalCurrentBet: 0,
   win: 0,
 };
 
@@ -39,7 +38,7 @@ const BettingProvider: React.FC<IBettingProvider> = ({
   }, []);
 
   const placeBetOn = (position: GamePosition): void => {
-    const { balance, bet, totalCurrentBet } = bettingState;
+    const { balance, bet } = bettingState;
     const { betRate } = settings;
     const haveEnoughBalance = balance >= betRate;
     const currentBetOnPosition = bet.get(position) || 0;
@@ -58,7 +57,6 @@ const BettingProvider: React.FC<IBettingProvider> = ({
               payload: {
                 position,
                 newBetForPosition: currentBetOnPosition + betRate,
-                totalCurrentBet: totalCurrentBet + betRate,
               },
             },
           ],
